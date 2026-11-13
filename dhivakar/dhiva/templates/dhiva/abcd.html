@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>CHURN RATE CALCULATOR</title>
+    </head>
+    <body>
+        <center><i><h1>CHURN RATE CALCULATOR</h1></i></center>
+        <center><h2>Dhivakar(26019255)</h2></center>
+        
+
+    <form method="POST">
+        {% csrf_token %}<br>
+
+        <label>CustLost:</label>
+        <input type="text" name="{{ CustLost }}"><br><br>
+        <label>InitCust:</label>
+        <input type="text" name="{{ InitCust }}"><br><br>
+        <input type="submit" value="Calculate"><br><br> 
+        <label>Churn Rate:</label>
+        <input type="text" value="{{ ChurnRate }}">
+    </form>
+    </body>
+</html>
