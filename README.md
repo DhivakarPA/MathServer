@@ -46,55 +46,63 @@ Publish the website in Localhost.
 abcd.html
 <html>
     <head>
-        <title>CHURN RATE CALCULATOR</title>
+        <title>Simple Webpage</title>
+    
     </head>
     <body>
-        <center><i><h1>CHURN RATE CALCULATOR</h1></i></center>
-        <center><h2>Dhivakar(26019255)</h2></center>
         
+        <h1 align="center"><i>Churn Rate Calculator</i></h1>
+        <h2 align="center"><i>DHIVAKAR PA (26019255)</i></h2>
 
-    <form method="POST">
-        {% csrf_token %}<br>
+        <form method="POST">
+            {%csrf_token%}<br>
 
-        <label>CustLost:</label>
-        <input type="text" name="{{ CustLost }}"><br><br>
-        <label>InitCust:</label>
-        <input type="text" name="{{ InitCust }}"><br><br>
-        <input type="submit" value="Calculate"><br><br> 
-        <label>Churn Rate:</label>
-        <input type="text" value="{{ ChurnRate }}">
-    </form>
+            
+            <label>Lost customer:</label>
+            <input type="text" name="CustLost" value="{{lost}}" ><br><br>
+            <label>Initial customer:</label>
+            <input type="text" name="InitCust" value="{{init}}"><br><br>
+            <input type="submit" value="Calculate"><br><br>
+
+
+            <label>Churn Rate:</label>
+            <input type="text" name="ChurnRate" value="{{ChurnRate}}">
+
+
+
+
+
+        </form>
     </body>
-</html>
+</html> 
 
 views.py
 from django.shortcuts import render
-def calculate(request):
-    custlost = int(request.POST.get('price', '0'))
-    initlost = int(request.POST.get('gst', '0'))
-    bill = initlost + (initlost * custlost / 100) if request.method == 'POST' else 0
-    print("initial customer =",initlost)
-    print("customer lost =",custlost)
-    print("churn rate =",bill)
-    return render(request, 'dhiva/abcd.html',{'initlost': initlost, 'custlost': custlost, 'bill': bill})
+
+def calculate_rate(request):
+    
+    lost=float(request.POST.get("CustLost",'0'))
+    init=float(request.POST.get("InitCust",'0'))
+    ChurnRate = (lost/init)*100 if request.method == 'POST' else 0
+    print(f"Initial Customer: {init}numbers \n Lost Customer: {lost}numbers \n Churn Rate: {ChurnRate}")
+    return render(request, "dhiva/abcd.html",{"init": init, "lost": lost, "ChurnRate": ChurnRate})
 
 urls.py
 from django.contrib import admin
 from django.urls import path
 from dhiva import views
 
-urlpatterns = [path('', views.calculate, name='calculate'),]
+
+urlpatterns = [path('', views.calculate_rate, name='calculate_rate'),]
 
 ```
 
 
 ## OUTPUT - SERVER SIDE:
-![alt text](<Screenshot 2026-11-13 135049.png>)
-
+![alt text](<Screenshot 2026-11-17 123409.png>)
 
 ## OUTPUT - WEBPAGE:
-![alt text](<Screenshot 2026-11-13 135132.png>)
-
+![alt text](<Screenshot 2026-11-17 124210.png>)
 
 ## RESULT:
 The the web page to calculate Churn Rate using server-side scripts is created successfully.

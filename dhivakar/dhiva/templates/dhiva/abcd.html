@@ -1,22 +1,31 @@
 <html>
     <head>
-        <title>CHURN RATE CALCULATOR</title>
+        <title>Simple Webpage</title>
+    
     </head>
     <body>
-        <center><i><h1>CHURN RATE CALCULATOR</h1></i></center>
-        <center><h2>Dhivakar(26019255)</h2></center>
         
+        <h1 align="center"><i>Churn Rate Calculator</i></h1>
+        <h2 align="center"><i>DHIVAKAR PA (26019255)</i></h2>
 
-    <form method="POST">
-        {% csrf_token %}<br>
+        <form method="POST">
+            {%csrf_token%}<br>
 
-        <label>CustLost:</label>
-        <input type="text" name="{{ CustLost }}"><br><br>
-        <label>InitCust:</label>
-        <input type="text" name="{{ InitCust }}"><br><br>
-        <input type="submit" value="Calculate"><br><br> 
-        <label>Churn Rate:</label>
-        <input type="text" value="{{ ChurnRate }}">
-    </form>
+            
+            <label>Lost customer:</label>
+            <input type="text" name="CustLost" value="{{lost}}" ><br><br>
+            <label>Initial customer:</label>
+            <input type="text" name="InitCust" value="{{init}}"><br><br>
+            <input type="submit" value="Calculate"><br><br>
+
+
+            <label>Churn Rate:</label>
+            <input type="text" name="ChurnRate" value="{{ChurnRate}}">
+
+
+
+
+
+        </form>
     </body>
-</html>
+</html> 
